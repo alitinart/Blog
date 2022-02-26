@@ -1,0 +1,73 @@
+.redirect-link {
+  text-align: center;
+  width: 100%;
+  margin: 15px 0 5px 0;
+}
+
+.redirect-link a {
+  color: #d3d1d1;
+  font-weight: bold;
+  text-decoration: none;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.redirect-link a:hover {
+  color: white;
+}
+
+.redirect-link a:hover::after {
+  -webkit-transform: scaleX(1);
+          transform: scaleX(1);
+}
+
+.redirect-link a:after {
+  display: block;
+  content: "";
+  border-bottom: solid 3px #d3d1d1;
+  -webkit-transform: scaleX(0);
+          transform: scaleX(0);
+  -webkit-transition: -webkit-transform 0.5s ease-in-out;
+  transition: -webkit-transform 0.5s ease-in-out;
+  transition: transform 0.5s ease-in-out;
+  transition: transform 0.5s ease-in-out, -webkit-transform 0.5s ease-in-out;
+  -webkit-transform-origin: 0% 50%;
+          transform-origin: 0% 50%;
+}
+
+.auth {
+  height: calc(100vh - 74px);
+  padding: 0 10%;
+}
+
+.auth .register,
+.auth .login {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 100%;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.form {
+  background-color: #0830bb;
+  padding: 40px;
+  border-radius: 3px;
+  color: white;
+}
+
+.title {
+  font-size: 50px;
+  text-align: center;
+  margin-bottom: 5px;
+}
+/*# sourceMappingURL=Auth.css.map */

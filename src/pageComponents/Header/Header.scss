@@ -1,3 +1,18 @@
+.focused-link {
+  background-color: white;
+  color: #2942ed;
+  transition: 0.5s;
+  border: 2px white solid;
+  display: inline-block;
+  padding: 5px;
+  border-radius: 3px;
+  text-decoration: none;
+
+  &:hover {
+    background-color: #2942ed !important;
+    color: white !important;
+  }
+}
 .header-container {
   position: fixed;
   top: 0;
@@ -37,6 +52,7 @@
       .nav-links {
         list-style-type: none;
         display: inline-flex;
+        align-items: center;
         .nav-link {
           margin: 0 10px;
           font-weight: bold;
@@ -118,7 +134,7 @@
   100% {
     opacity: 0;
     transform: translateY(2rem);
-    display: none;
+    left: -30000px;
   }
 }
 
@@ -131,6 +147,8 @@
   -webkit-animation: fadeOut 0.5s forwards; /* for less modern browsers */
   animation: fadeOut 0.5s forwards;
   background-color: #2942ed;
+  position: absolute;
+  width: 100%;
   color: white;
   padding: 20px 0 20px 30px;
   .menu-link {

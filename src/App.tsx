@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Header from "./pageComponents/Header/Header";
 import Footer from "./pageComponents/Footer/Footer";
 import Main from "./Components/Main/Main";
+import Auth from "./Components/Auth/Auth";
 
 function App() {
   return (
@@ -11,7 +12,8 @@ function App() {
         <Header />
       </div>
       <Routes>
-        <Route path="/" element={<Main></Main>}></Route>
+        <Route path="/" element={<Main />}></Route>
+        <Route path="/auth/:type" element={<Auth />}></Route>
       </Routes>
 
       <Footer />
