@@ -1,4 +1,5 @@
 import React from "react";
+import { Store } from "react-notifications-component";
 import { Link, useNavigate } from "react-router-dom";
 import requests from "../../../requests";
 
@@ -23,10 +24,34 @@ export default function Register() {
 
     if (resData.error) {
       setLoading(false);
-      return alert(resData.message);
+      return Store.addNotification({
+        title: "Error",
+        message: resData.message,
+        type: "danger",
+        insert: "top",
+        container: "top-right",
+        animationIn: ["animate__animated", "animate__fadeIn"],
+        animationOut: ["animate__animated", "animate__fadeOut"],
+        dismiss: {
+          duration: 5000,
+          onScreen: true,
+        },
+      });
     }
 
-    alert(resData.message);
+    Store.addNotification({
+      title: "Success",
+      message: resData.message,
+      type: "success",
+      insert: "top",
+      container: "top-right",
+      animationIn: ["animate__animated", "animate__fadeIn"],
+      animationOut: ["animate__animated", "animate__fadeOut"],
+      dismiss: {
+        duration: 5000,
+        onScreen: true,
+      },
+    });
 
     nav("/auth/login");
   };

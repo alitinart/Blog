@@ -15,10 +15,10 @@ const requests = {
       return res.data;
     },
     registerUser: async (
-      username: string,
-      email: string,
-      password: string,
-      fullName: string
+      username: any,
+      email: any,
+      password: any,
+      fullName: any
     ) => {
       const res = await axios.post(
         `${API_URL}/general/users/auth/register`,
@@ -37,7 +37,7 @@ const requests = {
 
       return res.data;
     },
-    loginUser: async (username: string, password: string) => {
+    loginUser: async (username: any, password: any) => {
       const res = await axios.post(
         `${API_URL}/general/users/auth/login`,
         {
@@ -53,9 +53,9 @@ const requests = {
 
       return res.data;
     },
-    logoutUser: async (token: string, refreshTokenId: string) => {
+    logoutUser: async (token: any, refreshTokenId: any) => {
       const res = await axios.post(
-        `${API_URL}/general/users`,
+        `${API_URL}/general/users/auth/logout`,
         {
           refreshTokenId,
         },
@@ -69,15 +69,22 @@ const requests = {
 
       return res.data;
     },
+    authUser: async (token: any) => {
+      const res = await axios.get(`${API_URL}/general/users/auth`, {
+        headers: { Authorization: `Bearer ${token}`, "x-api-key": API_KEY },
+      });
+
+      return res.data;
+    },
   },
 
   postsRequest: {
     createPost: async (
-      userId: string,
-      title: string,
-      description: string,
+      userId: any,
+      title: any,
+      description: any,
       attachments: "",
-      banner: string
+      banner: any
     ) => {
       const res = await axios.post(
         `${API_URL}/general/posts`,
@@ -107,7 +114,7 @@ const requests = {
 
       return res.data;
     },
-    deletePost: async (postId: string, userId: string) => {
+    deletePost: async (postId: any, userId: any) => {
       const res = await axios.delete(`${API_URL}/general/posts`, {
         headers: {
           "user-id": userId,
