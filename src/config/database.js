@@ -11,3 +11,4 @@ mongoose.connect("mongodb://localhost:27017/blog", (err) => {
 });
 
 require("../database/schemas/userSchema");
+require("../database/schemas/refreshTokenSchema");
