@@ -1,11 +1,15 @@
-import { useState } from "react";
 import "./App.css";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Header from "./pageComponents/Header/Header";
 
 function App() {
   return (
-    <div className="App">
-      <h1 className="text-5xl">A</h1>
-    </div>
+    <BrowserRouter>
+      <Header />
+      <Routes>
+        <Route></Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
