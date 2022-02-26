@@ -24,4 +24,31 @@ router.get("/", checkAPIKey, (req, res) => {
   });
 });
 
+/**
+ *
+ * Delete User
+ * Method: DELETE
+ *
+ */
+
+router.delete("/", checkAPIKey, adminCheck, (req, res) => {
+  const { refreshTokenId, userId } = req.body;
+  if (!refreshTokenId) {
+    return res.json({ error: true, message: "Refresh Token ID not provided" });
+  }
+  RefreshToken.findOneAndDelete({ _id: refreshTokenId })
+    .then((deletedToken) => {
+      User.findOneAndDelete({ _id: req.body.userId })
+        .then((user) => {
+          res.json({ error: false, message: "Deleted User Successfully" });
+        })
+        .catch((err) => {
+          res.send({ error: true, message: err.message });
+        });
+    })
+    .catch((err) => {
+      res.send({ error: true, message: err.message });
+    });
+});
+
 module.exports = router;

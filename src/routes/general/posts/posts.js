@@ -40,4 +40,11 @@ router.get("/", checkAPIKey, (req, res) => {
   });
 });
 
+// Delete Post
+router.delete("/", checkAPIKey, adminCheck, (req, res) => {
+  Post.findOneAndDelete({ _id: req.body.postId }).then((post) => {
+    res.json({ error: false, message: "Deleted Post Successfully" });
+  });
+});
+
 module.exports = router;
