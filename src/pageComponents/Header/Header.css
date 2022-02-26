@@ -1,3 +1,10 @@
+.header-container {
+  position: fixed;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+}
+
 .header-container .menu {
   background-color: #2942ed;
   color: white;
@@ -94,8 +101,8 @@
   color: #2942ed;
 }
 
-@media screen and (max-width: 551px) {
-  .header-container .header .menu {
+@media screen and (min-width: 551px) {
+  .header-container #menu {
     display: none !important;
   }
 }
@@ -145,6 +152,7 @@
     opacity: 0;
     -webkit-transform: translateY(2rem);
             transform: translateY(2rem);
+    display: none;
   }
 }
 
@@ -158,6 +166,7 @@
     opacity: 0;
     -webkit-transform: translateY(2rem);
             transform: translateY(2rem);
+    display: none;
   }
 }
 

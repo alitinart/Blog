@@ -36,7 +36,7 @@ export default function Header() {
           </ul>
         </div>
       </div>
-      <div className={showMenu ? "menu" : "menu--close"}>
+      <div id="menu" className={showMenu ? "menu" : "menu--close"}>
         <p className="menu-link">Home</p>
         <p className="menu-link">About</p>
         <p className="menu-link">Contact</p>

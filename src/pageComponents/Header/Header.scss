@@ -1,4 +1,8 @@
 .header-container {
+  position: fixed;
+  top: 0;
+  z-index: 100;
+  width: 100%;
   .menu {
     background-color: #2942ed;
     color: white;
@@ -72,12 +76,10 @@
   }
 }
 
-@media screen and (max-width: 551px) {
+@media screen and (min-width: 551px) {
   .header-container {
-    .header {
-      .menu {
-        display: none !important;
-      }
+    #menu {
+      display: none !important;
     }
   }
 }
@@ -116,6 +118,7 @@
   100% {
     opacity: 0;
     transform: translateY(2rem);
+    display: none;
   }
 }
 

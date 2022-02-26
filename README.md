@@ -5,6 +5,7 @@
 <hr>
 <h3>How it works</h3>
 <p>This website was mad using the aforementioned tools. <br>
+<p>No <strong>No CSS Frameworks Are Used</strong>. All made using <strong>SASS / SCSS</strong>.<br>
 It's a fully working website that you can take a look at it your self using <a href='https://nartaliti.me'><strong>This Link</strong></a>.</p>
 <hr>
 <h3>Contact Me 📞</h3>
