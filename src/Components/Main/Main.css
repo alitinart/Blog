@@ -1,4 +1,62 @@
 .main {
-  height: 200vh;
+  padding: 0 5%;
+}
+
+.main .banner {
+  padding: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.main .banner img {
+  width: 250px;
+}
+
+.main .search-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.main .search-container .search {
+  width: 100%;
+  font-size: 20px;
+  padding: 5px;
+  border: none;
+  border-bottom: 2px rgba(128, 128, 128, 0.404) solid;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  margin: 10px 0;
+}
+
+.main .search-container .search:focus {
+  border-bottom: 2px black solid;
+}
+
+.main .search-container i {
+  background-color: #2942ed;
+  color: white;
+  padding: 3px 8px;
+  margin-left: 10px;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  border: 2px solid #2942ed;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.main .search-container i:hover {
+  color: #2942ed;
+  background-color: white;
 }
 /*# sourceMappingURL=Main.css.map */
