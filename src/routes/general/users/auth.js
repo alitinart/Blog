@@ -11,6 +11,7 @@ require("dotenv").config();
 
 const generateAccessToken = require("../../../functions/generateAccessToken");
 const checkAPIKey = require("../../../middleware/checkAPIKey");
+const authenticateToken = require("../../../middleware/authenticateToken");
 
 /**
  *
@@ -50,7 +51,7 @@ router.post("/register", checkAPIKey, (req, res) => {
           res.json({ error: false, message: "User Successfully Generated" });
         });
       } catch (err) {
-        res.json({ error: true, message: err });
+        res.json({ error: true, message: err.message });
       }
     });
   });
@@ -75,7 +76,10 @@ router.post("/login", checkAPIKey, (req, res) => {
     try {
       if (await bcrypt.compare(password, user.password)) {
         const accessToken = generateAccessToken(JSON.stringify(user));
-        const refreshToken = jwt.sign(user, process.env.REFRESH_TOKEN_SECRET);
+        const refreshToken = jwt.sign(
+          JSON.stringify(user),
+          process.env.REFRESH_TOKEN_SECRET
+        );
 
         const newRefreshToken = new RefreshToken({
           token: refreshToken,
@@ -93,9 +97,30 @@ router.post("/login", checkAPIKey, (req, res) => {
         res.json({ error: true, message: "Password incorrect" });
       }
     } catch (err) {
-      res.json({ error: true, message: err });
+      res.json({ error: true, message: err.message });
     }
   });
+});
+
+/**
+ *
+ * Logout
+ * Method: POST
+ *
+ */
+
+router.post("/logout", checkAPIKey, authenticateToken, (req, res) => {
+  const { refreshTokenId } = req.body;
+  if (!refreshTokenId) {
+    return res.json({ error: true, message: "Refresh Token ID not provided" });
+  }
+  RefreshToken.findOneAndDelete({ _id: refreshTokenId })
+    .then((deletedToken) => {
+      res.json({ error: false, message: "Successfully Logged Out" });
+    })
+    .catch((err) => {
+      res.send({ error: true, message: err.message });
+    });
 });
 
 module.exports = router;
