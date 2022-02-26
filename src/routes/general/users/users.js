@@ -10,6 +10,7 @@ const RefreshToken = mongoose.model("RefreshToken");
 require("dotenv").config();
 
 const checkAPIKey = require("../../../middleware/checkAPIKey");
+const adminCheck = require("../../../middleware/adminCheck");
 
 /**
  *
