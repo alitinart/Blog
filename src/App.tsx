@@ -8,36 +8,14 @@ import Auth from "./Components/Auth/Auth";
 import requests from "./requests";
 import { ReactNotifications, Store } from "react-notifications-component";
 import "react-notifications-component/dist/theme.css";
+import authGuard from "./functions/authGuard";
 
 function App() {
   const [user, setUser] = React.useState<any>();
 
   React.useEffect(() => {
     const authUser = async () => {
-      if (localStorage.getItem("token")) {
-        const resData = await requests.userRequests.authUser(
-          localStorage.getItem("token")
-        );
-        if (resData !== "Forbidden") {
-          setUser(resData.data);
-        } else {
-          Store.addNotification({
-            title: "Session Expired",
-            message: "Session has Expired login again",
-            type: "danger",
-            insert: "top",
-            container: "top-right",
-            animationIn: ["animate__animated", "animate__fadeIn"],
-            animationOut: ["animate__animated", "animate__fadeOut"],
-            dismiss: {
-              duration: 5000,
-              onScreen: true,
-            },
-          });
-        }
-      } else {
-        setUser("");
-      }
+      setUser(await authGuard(localStorage.getItem("token")));
     };
 
     authUser();
@@ -62,7 +40,7 @@ function App() {
       <ReactNotifications />
       <Routes>
         <Route path="/" element={<Main />}></Route>
-        <Route path="/auth/:type" element={<Auth />}></Route>
+        <Route path="/auth/:type" element={<Auth userObject={user} />}></Route>
       </Routes>
 
       <Footer />
