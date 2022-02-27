@@ -92,7 +92,11 @@ const requests = {
         }
       );
 
-      return adminCheck.data;
+      if (adminCheck.data.error) {
+        return "";
+      }
+
+      return res.data.data._id;
     },
   },
 
@@ -101,7 +105,7 @@ const requests = {
       userId: any,
       title: any,
       description: any,
-      attachments: "",
+      attachments: string,
       banner: any
     ) => {
       const res = await axios.post(
@@ -142,6 +146,13 @@ const requests = {
           postId,
         },
       });
+      return res.data;
+    },
+    getPostByID: async (postId: any) => {
+      const res = await axios.get(`${API_URL}/general/posts/${postId}`, {
+        headers: { "x-api-key": API_KEY },
+      });
+
       return res.data;
     },
   },

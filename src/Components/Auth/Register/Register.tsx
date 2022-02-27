@@ -76,6 +76,7 @@ export default function Register() {
               }}
               className="form-control"
               placeholder="Full Name"
+              required
             />
             <input
               type={"text"}
@@ -85,6 +86,7 @@ export default function Register() {
               }}
               className="form-control"
               placeholder="Username"
+              required
             />
             <input
               type={"email"}
@@ -94,6 +96,7 @@ export default function Register() {
               }}
               className="form-control"
               placeholder="Email"
+              required
             />
             <input
               type={"password"}
@@ -102,7 +105,8 @@ export default function Register() {
               onChange={(e) => {
                 setPassword(e.target.value);
               }}
-              placeholder="Password "
+              placeholder="Password"
+              required
             />
             <p className="redirect-link">
               Already have a account ?{" "}

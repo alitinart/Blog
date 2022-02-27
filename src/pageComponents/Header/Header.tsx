@@ -29,6 +29,7 @@ export default function Header(props: any) {
   };
 
   const logoutHandler = async () => {
+    setAdmin(false);
     const resData = await requests.userRequests.logoutUser(
       localStorage.getItem("token"),
       localStorage.getItem("refreshId")
@@ -55,10 +56,18 @@ export default function Header(props: any) {
         </div>
         <div className="links">
           <ul className="nav-links">
-            <li className="nav-link">Home</li>
+            <Link to={"/"} className="nav-link">
+              Home
+            </Link>
             <li className="nav-link">About</li>
             <li className="nav-link">Contact</li>
-            {admin ? <li className="nav-link">Add Post</li> : <></>}
+            {admin ? (
+              <Link to={"/addPost"} className="nav-link">
+                Add Post
+              </Link>
+            ) : (
+              <></>
+            )}
             {!props.userObject ? (
               <Link to={"/auth/register"} className="nav-link focused-link">
                 Register
@@ -72,13 +81,28 @@ export default function Header(props: any) {
         </div>
         <div className="socials">
           <ul className="socials-links">
-            <li className="social-link">
+            <li
+              onClick={() => {
+                window.location.href = "https://github.com/alitinart";
+              }}
+              className="social-link"
+            >
               <i className="bi bi-twitter" />
             </li>
-            <li className="social-link">
+            <li
+              onClick={() => {
+                window.location.href = "https://github.com/alitinart";
+              }}
+              className="social-link"
+            >
               <i className="bi bi-github" />
             </li>
-            <li className="social-link">
+            <li
+              onClick={() => {
+                window.location.href = "https://github.com/alitinart";
+              }}
+              className="social-link"
+            >
               {" "}
               <i className="bi bi-instagram" />
             </li>
@@ -86,10 +110,18 @@ export default function Header(props: any) {
         </div>
       </div>
       <div id="menu" className={showMenu ? "menu" : "menu--close"}>
-        <p className="menu-link">Home</p>
+        <Link to={"/"} className="menu-link">
+          Home
+        </Link>
         <p className="menu-link">About</p>
         <p className="menu-link">Contact</p>
-        {admin ? <p className="menu-link">Add Post</p> : <></>}
+        {admin ? (
+          <Link to={"/addPost"} className="menu-link">
+            Add Post
+          </Link>
+        ) : (
+          <></>
+        )}
         {!props.userObject ? (
           <Link to={"/auth/register"} className="menu-link focused-link">
             Register

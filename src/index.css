@@ -155,6 +155,11 @@
   width: 100%;
 }
 
+.text-area-form {
+  width: 96% !important;
+  transition: none !important;
+}
+
 /* Loader */
 
 .loader {

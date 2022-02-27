@@ -1,9 +1,14 @@
+.menu-link,
+.nav-link {
+  color: white;
+  text-decoration: none;
+}
 .focused-link {
   background-color: white;
   color: #2942ed;
   transition: 0.5s;
   border: 2px white solid;
-  display: inline-block;
+  display: inline-block !important;
   padding: 5px;
   border-radius: 3px;
   text-decoration: none;
@@ -24,7 +29,8 @@
     padding: 20px 0 20px 30px;
     .menu-link {
       font-weight: bold;
-      margin: 5px 0;
+      display: block;
+      margin: 10px 0;
       font-size: 18px;
       &:first-child {
         margin-top: 0 !important;

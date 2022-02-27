@@ -1,0 +1,14 @@
+.add-post {
+  height: calc(100vh - 74px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .add-post-form {
+    width: 50%;
+  }
+}
+@media screen and (max-height: 768px) {
+  .add-post {
+    height: 100vh !important;
+  }
+}

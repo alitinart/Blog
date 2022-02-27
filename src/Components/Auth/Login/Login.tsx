@@ -72,6 +72,7 @@ export default function Login() {
               }}
               className="form-control"
               placeholder="Username"
+              required
             />
             <input
               type={"password"}
@@ -80,7 +81,8 @@ export default function Login() {
                 setPassword(e.target.value);
               }}
               className="form-control"
-              placeholder="Password "
+              placeholder="Password"
+              required
             />
             <p className="redirect-link">
               Don't have a account ?{" "}

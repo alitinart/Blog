@@ -1,0 +1,55 @@
+.post {
+  margin: 20px 0;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 50%;
+  height: 250px;
+  border-radius: 5px;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.post:hover {
+  -webkit-transform: scale(1.05);
+          transform: scale(1.05);
+}
+
+.post .tint {
+  border-radius: 5px;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.781);
+}
+
+.post .tint .post-title {
+  color: white;
+}
+
+.post .tint .read-button {
+  width: 50%;
+}
+
+.post .tint .timestamp {
+  color: white;
+}
+
+@media screen and (max-width: 1024px) {
+  .post {
+    width: 100%;
+  }
+}
+/*# sourceMappingURL=PostItem.css.map */

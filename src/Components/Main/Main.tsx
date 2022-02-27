@@ -2,10 +2,12 @@ import React from "react";
 import { Store } from "react-notifications-component";
 import Banner from "../../assets/images/Banner@2x.png";
 import requests from "../../functions/requests";
+import Post from "../../models/post.model";
 import "./Main.css";
+import PostItem from "./PostItem/PostItem";
 
 export default function Main() {
-  const [posts, setPosts] = React.useState([]);
+  const [posts, setPosts] = React.useState<Post[]>([]);
 
   React.useEffect(() => {
     const posts = async () => {
@@ -32,16 +34,17 @@ export default function Main() {
     return () => {};
   }, []);
 
-  return (
+  return posts.length > 0 ? (
     <div className="main">
-      {posts.length > 0 ? (
-        <div>
-          <div className="content"></div>
-          <div className="side-bar"></div>
-        </div>
-      ) : (
-        <div className="loader"></div>
-      )}
+      <div className="content">
+        <h1 className="title">Blog Posts</h1>
+        {posts.map((post) => {
+          return <PostItem postData={post} />;
+        })}
+      </div>
+      <div className="side-bar"></div>
     </div>
+  ) : (
+    <div className="loader"></div>
   );
 }

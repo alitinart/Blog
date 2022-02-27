@@ -10,6 +10,7 @@ import { ReactNotifications, Store } from "react-notifications-component";
 import "react-notifications-component/dist/theme.css";
 import authGuard from "./functions/authGuard";
 import AddPost from "./Components/AddPost/AddPost";
+import ViewPost from "./Components/ViewPost/ViewPost";
 
 function App() {
   const [user, setUser] = React.useState<any>();
@@ -42,6 +43,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Main />}></Route>
         <Route path="/auth/:type" element={<Auth userObject={user} />}></Route>
+        <Route path="/posts/:postId" element={<ViewPost />}></Route>
         <Route path="/addPost" element={<AddPost userObject={user} />}></Route>
       </Routes>
 
