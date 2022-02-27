@@ -1,7 +1,7 @@
 import React from "react";
 import { Store } from "react-notifications-component";
 import { Link, useNavigate } from "react-router-dom";
-import requests from "../../../requests";
+import requests from "../../../functions/requests";
 
 export default function Register() {
   const [username, setUsername] = React.useState("");

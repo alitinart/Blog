@@ -1,6 +1,7 @@
 import React from "react";
+import { Store } from "react-notifications-component";
 import Banner from "../../assets/images/Banner@2x.png";
-import requests from "../../requests";
+import requests from "../../functions/requests";
 import "./Main.css";
 
 export default function Main() {
@@ -9,7 +10,22 @@ export default function Main() {
   React.useEffect(() => {
     const posts = async () => {
       const posts = await requests.postsRequest.getAllPosts();
-      setPosts(posts);
+      if (posts.data.length <= 0) {
+        Store.addNotification({
+          title: "Error",
+          message: "There are no posts at the moment",
+          type: "danger",
+          insert: "top",
+          container: "top-right",
+          animationIn: ["animate__animated", "animate__fadeIn"],
+          animationOut: ["animate__animated", "animate__fadeOut"],
+          dismiss: {
+            duration: 5000,
+            onScreen: true,
+          },
+        });
+      }
+      setPosts(posts.data);
     };
 
     posts();

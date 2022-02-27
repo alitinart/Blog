@@ -5,10 +5,11 @@ import Header from "./pageComponents/Header/Header";
 import Footer from "./pageComponents/Footer/Footer";
 import Main from "./Components/Main/Main";
 import Auth from "./Components/Auth/Auth";
-import requests from "./requests";
+import requests from "./functions/requests";
 import { ReactNotifications, Store } from "react-notifications-component";
 import "react-notifications-component/dist/theme.css";
 import authGuard from "./functions/authGuard";
+import AddPost from "./Components/AddPost/AddPost";
 
 function App() {
   const [user, setUser] = React.useState<any>();
@@ -41,6 +42,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Main />}></Route>
         <Route path="/auth/:type" element={<Auth userObject={user} />}></Route>
+        <Route path="/addPost" element={<AddPost userObject={user} />}></Route>
       </Routes>
 
       <Footer />

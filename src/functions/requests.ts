@@ -76,6 +76,24 @@ const requests = {
 
       return res.data;
     },
+    adminCheck: async (token: string) => {
+      const res = await axios.get(`${API_URL}/general/users/auth`, {
+        headers: { Authorization: `Bearer ${token}`, "x-api-key": API_KEY },
+      });
+
+      const adminCheck = await axios.get(
+        `${API_URL}/general/users/auth/admin`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "x-api-key": API_KEY,
+            "user-id": res.data.data._id,
+          },
+        }
+      );
+
+      return adminCheck.data;
+    },
   },
 
   postsRequest: {

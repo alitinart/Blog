@@ -1,11 +1,28 @@
 import React from "react";
-import { Store } from "react-notifications-component";
-import { Link } from "react-router-dom";
-import requests from "../../requests";
+import { Link, useNavigate } from "react-router-dom";
+import adminGuard from "../../functions/adminGuard";
+import notificationProvider from "../../functions/notificationProvider";
+import requests from "../../functions/requests";
 import "./Header.css";
 
 export default function Header(props: any) {
   const [showMenu, setShowMenu] = React.useState(false);
+  const [admin, setAdmin] = React.useState(false);
+
+  const nav = useNavigate();
+
+  React.useEffect(() => {
+    const adminCheck = async () => {
+      const resData = await adminGuard(localStorage.getItem("token"));
+      if (!resData) {
+        return setAdmin(false);
+      }
+      setAdmin(true);
+    };
+    adminCheck();
+
+    return () => {};
+  }, []);
 
   const toggleMenu = () => {
     setShowMenu(!showMenu);
@@ -18,39 +35,16 @@ export default function Header(props: any) {
     );
 
     if (resData.error) {
-      return Store.addNotification({
-        title: "Error",
-        message: resData.message,
-        type: "danger",
-        insert: "top",
-        container: "top-right",
-        animationIn: ["animate__animated", "animate__fadeIn"],
-        animationOut: ["animate__animated", "animate__fadeOut"],
-        dismiss: {
-          duration: 5000,
-          onScreen: true,
-        },
-      });
+      return notificationProvider("Error", resData.message, "danger");
     }
 
     localStorage.removeItem("token");
     localStorage.removeItem("refreshId");
 
-    Store.addNotification({
-      title: "Logged Out",
-      message: "You have been logged out.",
-      type: "warning",
-      insert: "top",
-      container: "top-right",
-      animationIn: ["animate__animated", "animate__fadeIn"],
-      animationOut: ["animate__animated", "animate__fadeOut"],
-      dismiss: {
-        duration: 5000,
-        onScreen: true,
-      },
-    });
+    notificationProvider("Logged Out", "You have been logged out.", "warning");
 
     props.setUserHandler("");
+    nav("/auth/login");
   };
 
   return (
@@ -64,6 +58,7 @@ export default function Header(props: any) {
             <li className="nav-link">Home</li>
             <li className="nav-link">About</li>
             <li className="nav-link">Contact</li>
+            {admin ? <li className="nav-link">Add Post</li> : <></>}
             {!props.userObject ? (
               <Link to={"/auth/register"} className="nav-link focused-link">
                 Register
@@ -94,6 +89,7 @@ export default function Header(props: any) {
         <p className="menu-link">Home</p>
         <p className="menu-link">About</p>
         <p className="menu-link">Contact</p>
+        {admin ? <p className="menu-link">Add Post</p> : <></>}
         {!props.userObject ? (
           <Link to={"/auth/register"} className="menu-link focused-link">
             Register
